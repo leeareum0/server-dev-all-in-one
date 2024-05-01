@@ -1,4 +1,4 @@
-package com.group.libraryapp.controlller.calculator;
+package com.group.libraryapp.controller.calculator;
 
 import com.group.libraryapp.dto.calculator.request.CalculatorAddRequest;
 import com.group.libraryapp.dto.calculator.request.CalculatorMultiplyRequest;
