@@ -42,15 +42,12 @@ public class UserController {
         String sql = "SELECT * FROM user";
 
         //익명 클래스
-        //RowMapper - sql 실행 후 user 정보를 선언한 타입인 UserResponse 전환해주는 역할
-        return jdbcTemplate.query(sql, new RowMapper<UserResponse>() {
-            @Override
-            public UserResponse mapRow(ResultSet rs, int rowNum) throws SQLException {
-                long id = rs.getLong("id");
-                String name = rs.getString("name");
-                int age = rs.getInt("age");
-                return new UserResponse(id, name, age);
-            }
+        //RowMapper - sql 실행 후 user 정보를 선언한 타입인 UserResponse 전환해주는 역할(람다 사용)
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+            long id = rs.getLong("id");
+            String name = rs.getString("name");
+            int age = rs.getInt("age");
+            return new UserResponse(id, name, age);
         });
     }
 }
