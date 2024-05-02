@@ -53,4 +53,10 @@ public class UserController {
         jdbcTemplate.update(sql, request.getName(), request.getId());
     }
 
+    //삭제
+    @DeleteMapping("/user")
+    public void deleteUser(@RequestParam String name) {
+        String sql = "DELETE FROM user WHERE name = ?";
+        jdbcTemplate.update(sql, name);
+    }
 }
