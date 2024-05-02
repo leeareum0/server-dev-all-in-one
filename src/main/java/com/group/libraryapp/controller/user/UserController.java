@@ -49,6 +49,15 @@ public class UserController {
     //수정
     @PutMapping("/user")
     public void updateUser(@RequestBody UserUpdateRequest request) {
+        //유저 존재여부 확인
+        String readSql = "SELECT * FROM user WHERE id = ?";
+        //쿼리가 DB에 전송해서 데이터가 있는지 확인
+        boolean isUserNotExist = jdbcTemplate.query(readSql, (rs, rowNum) -> 0, request.getId()).isEmpty();
+
+        if (isUserNotExist) {
+            throw new IllegalArgumentException();
+        }
+
         String sql = "UPDATE user SET name = ? WHERE id = ?";
         jdbcTemplate.update(sql, request.getName(), request.getId());
     }
