@@ -23,8 +23,7 @@ public class UserController {
 
     @PostMapping("/user") //POST /user
     public void saveUser(@RequestBody UserCreateRequest request) {
-        String sql = "INSERT INTO user (name, age) VALUES (?, ?)"; //입력값을 넣어야 해서 ? 사용
-        jdbcTemplate.update(sql, request.getName(), request.getAge()); //?값 순서대로 작성
+        userService.saveUser(request);
     }
 
     @GetMapping("/fruit")
