@@ -31,4 +31,10 @@ public class UserRepository {
         String sql = "DELETE FROM user WHERE name = ?";
         jdbcTemplate.update(sql, name);
     }
+
+    public void saveUser(String name, Integer age) {
+        String sql = "INSERT INTO user (name, age) VALUES (?, ?)"; //입력값을 넣어야 해서 ? 사용
+        jdbcTemplate.update(sql, name, age); //?값 순서대로 작성
+
+    }
 }
