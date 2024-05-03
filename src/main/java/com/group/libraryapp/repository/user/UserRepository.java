@@ -1,6 +1,9 @@
 package com.group.libraryapp.repository.user;
 
+import com.group.libraryapp.dto.user.response.UserResponse;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.List;
 
 public class UserRepository {
 
@@ -8,6 +11,22 @@ public class UserRepository {
 
     public UserRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public void saveUser(String name, Integer age) {
+        String sql = "INSERT INTO user (name, age) VALUES (?, ?)"; //입력값을 넣어야 해서 ? 사용
+        jdbcTemplate.update(sql, name, age); //?값 순서대로 작성
+    }
+
+    public List<UserResponse> getUsers() {
+        String sql = "SELECT * FROM user";
+
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+            long id = rs.getLong("id");
+            String name = rs.getString("name");
+            int age = rs.getInt("age");
+            return new UserResponse(id, name, age);
+        });
     }
 
     public boolean isUserNotExist(long id) {
@@ -30,11 +49,5 @@ public class UserRepository {
     public void deleteUser(String name) {
         String sql = "DELETE FROM user WHERE name = ?";
         jdbcTemplate.update(sql, name);
-    }
-
-    public void saveUser(String name, Integer age) {
-        String sql = "INSERT INTO user (name, age) VALUES (?, ?)"; //입력값을 넣어야 해서 ? 사용
-        jdbcTemplate.update(sql, name, age); //?값 순서대로 작성
-
     }
 }
