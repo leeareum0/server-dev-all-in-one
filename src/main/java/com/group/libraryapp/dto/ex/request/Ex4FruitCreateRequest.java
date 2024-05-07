@@ -2,13 +2,13 @@ package com.group.libraryapp.dto.ex.request;
 
 import java.time.LocalDate;
 
-public class Ex4FruitRequest {
+public class Ex4FruitCreateRequest {
 
     private String name;
     private LocalDate warehousingDate;
     private long price;
 
-    public Ex4FruitRequest(String name, LocalDate warehousingDate, long price) {
+    public Ex4FruitCreateRequest(String name, LocalDate warehousingDate, long price) {
         this.name = name;
         this.warehousingDate = warehousingDate;
         this.price = price;
