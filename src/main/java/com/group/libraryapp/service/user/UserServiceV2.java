@@ -39,7 +39,6 @@ public class UserServiceV2 {
                 .orElseThrow(IllegalAccessError::new);  //유저가 없다면 예외처리
 
         user.updateName(request.getName());
-        userRepository.save(user);
     }
 
     //삭제
