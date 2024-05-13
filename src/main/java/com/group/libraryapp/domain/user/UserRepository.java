@@ -6,5 +6,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     //유저를 반환해주는 함수
     User findByName(String name);
-
 }
