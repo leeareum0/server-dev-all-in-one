@@ -45,9 +45,7 @@ public class BookService {
         //4. 유저 정보를 가져온다.
         User user = userRepositoryV2.findByName(request.getUserName())
                 .orElseThrow(IllegalArgumentException::new);
-
-        //5. 유저 정보와 책 정보를 기반으로 UserLoanHistory를 저장한다.
-        userLoanHistoryRepository.save(new UserLoanHistory(user, book.getName()));
+        user.loanBook(book.getName());
     }
 
     @Transactional
