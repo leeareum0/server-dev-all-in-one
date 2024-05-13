@@ -1,4 +1,4 @@
-package com.group.libraryapp.controller.ex;
+package com.group.libraryapp.controller.ex.fruit;
 
 import com.group.libraryapp.dto.ex.request.Ex4FruitCreateRequest;
 import com.group.libraryapp.dto.ex.request.Ex4FruitSoldRequest;
