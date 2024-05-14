@@ -55,11 +55,6 @@ public class BookService {
         User user = userRepositoryV2.findByName(request.getUserName())
                 .orElseThrow(IllegalArgumentException::new);
 
-        //대출기록 찾기
-        UserLoanHistory history = userLoanHistoryRepository.findByUserIdAndBookName(user.getId(), request.getBookName())
-                .orElseThrow(IllegalArgumentException::new);
-
-        //대출 기록 반납처리
-        history.doReturn();
+        user.returnBook(request.getBookName());
     }
 }
