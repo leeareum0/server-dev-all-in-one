@@ -24,11 +24,6 @@ public class UserController {
         userService.saveUser(request);
     }
 
-    @GetMapping("/fruit")
-    public Fruit fruit() {
-        return new Fruit("바나나", 2000); //객체 반환
-    }
-
 
     //조회
     @GetMapping("/user")
