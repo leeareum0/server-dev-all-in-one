@@ -1,14 +1,16 @@
 package com.group.libraryapp.repository.fruit;
 
-import com.group.libraryapp.dto.ex.response.Ex4FruitSalesAmountResponse;
+import com.group.libraryapp.domain.user.Fruit;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
+import java.util.List;
 
-public interface FruitRepository {
+@Repository
+public interface FruitRepository extends JpaRepository<Fruit, Long> {
 
-    void saveFruit(String name, LocalDate warehousingDate, long price);
-    void updateFruit(long id);
-    Ex4FruitSalesAmountResponse statFruit(String name);
-    boolean isFruitNotExist(long id);
-    boolean isFruitNotExist(String name);
+    List<Fruit> findAllByNameAndIsSold(String name, boolean isSold);
+    long countAllByName(String name);
+    List<Fruit> findByPriceGreaterThanEqual(long price);
+    List<Fruit> findByPriceLessThanEqual(long price);
 }
